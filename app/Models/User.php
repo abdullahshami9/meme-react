@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-
+use Illuminate\Support\Str;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -17,6 +17,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $table = 'users_meme';
     protected $fillable = [
         'name',
         'email',
@@ -42,4 +43,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public static function generateUserName($username){
+        if ($username == null) {
+            # code...
+            $username = Str::lower(Str::random( length: 8 ));
+        }
+
+        if (User::where('username', $username)->exists()) {
+            # code...
+            $newUsername = $username.Str::lower(Str::random(length:3));
+            $username = self::generateUserName($newUsername);
+        }
+
+        return $username;
+    }
+
 }

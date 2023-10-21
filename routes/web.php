@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,11 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+Route::get('/auth/{provider}/redirect', [LoginController::class, 'redirect']);
+
+Route::get('/auth/{provider}/callback', [LoginController::class, 'callback'])->middleware('web');
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
