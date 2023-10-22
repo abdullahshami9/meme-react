@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\Profile;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -37,9 +38,11 @@ class AuthenticatedSessionController extends Controller
     
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
-            
+
+            $profile = Profile::find($user->id);
+
             if ($request->wantsJson()) {
-                return response()->json(['status' => 200, 'message' => 'Login successful', 'user' => $user]);
+                return response()->json(['status' => 200, 'message' => 'Login successful', 'user' => $user, 'profile' => $profile]);
             } else {
                 return redirect()->intended(RouteServiceProvider::HOME);
             }
