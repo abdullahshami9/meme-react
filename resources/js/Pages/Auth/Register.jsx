@@ -12,7 +12,7 @@ export default function Register() {
         email: '',
         password: '',
         password_confirmation: '',
-        gender: 'prefer_not_to_say',
+        gender: null,
         date_of_birth: '', // New field for date of birth
     });
 
@@ -165,8 +165,8 @@ export default function Register() {
                                 <input
                                     type="radio"
                                     name="gender"
-                                    value="male"
-                                    checked={data.gender === "male"}
+                                    value="1"
+                                    checked={data.gender === "1"}
                                     onChange={(e) => setData('gender', e.target.value)}
                                 />
                                 Male
@@ -182,8 +182,8 @@ export default function Register() {
                                 <input
                                     type="radio"
                                     name="gender"
-                                    value="female"
-                                    checked={data.gender === "female"}
+                                    value="2"
+                                    checked={data.gender === "2"}
                                     onChange={(e) => setData('gender', e.target.value)}
                                 />
                                 Female
@@ -196,8 +196,8 @@ export default function Register() {
                             <input
                                 type="radio"
                                 name="gender"
-                                value="prefer_not_to_say"
-                                checked={data.gender === "prefer_not_to_say"}
+                                value="3"
+                                checked={data.gender === "3"}
                                 onChange={(e) => setData('gender', e.target.value)}
                             />
                             Prefer Not to Say
