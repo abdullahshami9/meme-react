@@ -101,6 +101,7 @@ export default function Register() {
                     {/* Dropdowns for date, month, and year */}
                     <div className="flex">
                         <select
+                            style={{ borderRadius: 10 }}
                             name="date"
                             value={data.date_of_birth.split('/')[0]}
                             onChange={(e) => {
@@ -115,6 +116,7 @@ export default function Register() {
                             ))}
                         </select>
                         <select
+                            style={{ borderRadius: 10 }}
                             name="month"
                             value={data.date_of_birth.split('/')[1]}
                             onChange={(e) => {
@@ -129,6 +131,7 @@ export default function Register() {
                             ))}
                         </select>
                         <select
+                            style={{ borderRadius: 10 }}
                             name="year"
                             value={data.date_of_birth.split('/')[2]}
                             onChange={(e) => {
@@ -149,28 +152,47 @@ export default function Register() {
                     <InputLabel value="Gender" />
                     {/* Radio buttons for gender in a row */}
                     <div className="flex">
-                        <label className="mr-4">
-                            <input
-                                type="radio"
-                                name="gender"
-                                value="male"
-                                checked={data.gender === "male"}
-                                onChange={(e) => setData('gender', e.target.value)}
-                            />
-                            Male
-                        </label>
-                        
-                        <label className="mr-4">
-                            <input
-                                type="radio"
-                                name="gender"
-                                value="female"
-                                checked={data.gender === "female"}
-                                onChange={(e) => setData('gender', e.target.value)}
-                            />
-                            Female
-                        </label>
-                        <label>
+
+                        <div
+
+                            style={{ borderRadius: 10, borderWidth: 2, borderColor: 'black', margin: 10 }}>
+
+
+                            <label
+                                style={{ paddingLeft: 10,paddingVertical:20 }}
+                                className="mr-4">
+
+                                <input
+                                    type="radio"
+                                    name="gender"
+                                    value="male"
+                                    checked={data.gender === "male"}
+                                    onChange={(e) => setData('gender', e.target.value)}
+                                />
+                                Male
+                            </label>
+
+                        </div>
+                        <div
+                         style={{ borderRadius: 10, borderWidth: 2, borderColor: 'black', margin: 10 }}>
+                            
+                            <label 
+                            style={{ paddingLeft: 10,paddingVertical:20 }}
+                            className="mr-4">
+                                <input
+                                    type="radio"
+                                    name="gender"
+                                    value="female"
+                                    checked={data.gender === "female"}
+                                    onChange={(e) => setData('gender', e.target.value)}
+                                />
+                                Female
+                            </label>
+                        </div>
+                        <div
+                         style={{ borderRadius: 10, borderWidth: 2, borderColor: 'black', margin: 10 }}>
+                        <label
+                        style={{ paddingLeft: 10,paddingVertical:20 }}>
                             <input
                                 type="radio"
                                 name="gender"
@@ -180,20 +202,11 @@ export default function Register() {
                             />
                             Prefer Not to Say
                         </label>
+                        </div>
                     </div>
                 </div>
 
-                <div className='mt-4'>
-                    <InputLabel htmlFor="date_of_birth" value="Date of Birth" />
-                    <TextInput
-                        id="date_of_birth"
-                        type="date"
-                        name="date_of_birth"
-                        value={data.date_of_birth}
-                        className="mt-1 block w-full"
-                        onChange={(e) => setData('date_of_birth', e.target.value)}
-                    />
-                </div>
+
 
                 <div className="flex items-center justify-end mt-4">
                     <Link
