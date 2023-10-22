@@ -159,6 +159,7 @@ export default function Register() {
                             />
                             Male
                         </label>
+                        
                         <label className="mr-4">
                             <input
                                 type="radio"
