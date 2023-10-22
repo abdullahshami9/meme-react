@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\GenderController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Http\Request;
@@ -22,7 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::post('user/data', [LoginController::class, 'userdata']);
+Route::post('user/profile/data', [ProfileController::class, 'get_user_profile']);
 Route::post('user/login', [AuthenticatedSessionController::class, 'store']);
 Route::post('user/register', [RegisteredUserController::class, 'store']);
 Route::post('user/logout', [ProfileController::class, 'destroy']);
+Route::post('user/gender', [GenderController::class,'get_gender']);
