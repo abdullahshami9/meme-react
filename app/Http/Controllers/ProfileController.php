@@ -58,6 +58,14 @@ class ProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
+        if ($request->wantsJson()) {
+            return response()->json([
+                'status' => 200,
+                'message' => 'you are logged out successfully',
+                'data' => $user
+            ]);
+        }
+
         return Redirect::to('/');
     }
 }
