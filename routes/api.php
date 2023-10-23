@@ -30,3 +30,4 @@ Route::post('user/register', [RegisteredUserController::class, 'store']);
 Route::post('user/logout', [ProfileController::class, 'destroy']);
 Route::post('user/gender', [GenderController::class, 'get_gender']);
 Route::post('user/profile/post', [PostController::class, 'create_post']);
+Route::post('user/profile/all-post', [PostController::class, 'fetch_post']);

@@ -11,10 +11,25 @@ class MediaController extends Controller
     public static function uploadImage($image)
     {
         $media = new Media();
-        
+
         $media->type = 'image'; // or other appropriate type
         $media->size = $image->getSize();
-        $media->url = $image->store('media'); // You can adjust the storage path
+
+        $media->save();
+
+        $mediaId = $media->id; // Assuming that Media model has an 'id' field
+
+        // Determine the file extension (e.g., png, jpeg, etc.)
+        $extension = $image->getClientOriginalExtension();
+
+        // Define the storage path with the media ID and extension
+        $storagePath = 'media/' . $mediaId . '.' . $extension;
+
+        // Store the image with the new filename
+        $image->storeAs('public', $storagePath); // You can adjust the storage path
+
+        // Assign the URL to the media based on the storage path
+        $media->url = asset('storage/' . $storagePath);
 
         return $media;
     }
@@ -22,12 +37,12 @@ class MediaController extends Controller
     public static function saveMedia($media, $post_id)
     {
         $media->post_id_fk = $post_id;
-        $media->save();
+        return ($media->save()) ? true : false;
     }
 
     public function savePostWithMedia(Request $request, $post_id)
     {
-        
+
 
         if ($request->hasFile("image")) {
             $images = $request->file("image");
@@ -64,7 +79,7 @@ class MediaController extends Controller
             }
 
             // Save all media records in one go
-            if(Media::insert($mediaRecords)){
+            if (Media::insert($mediaRecords)) {
                 return response()->json([
                     'status' => 200,
                     'message' => 'Media for post created successfully',

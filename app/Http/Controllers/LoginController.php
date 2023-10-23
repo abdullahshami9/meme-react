@@ -18,7 +18,7 @@ class LoginController extends Controller
     {
 
         // $user = Socialite::driver($provider)->user();
-        // try {
+        try {
             //code...
             // $SocialUser = Socialite::driver($provider)->stateless()->user();
             $SocialUser = Socialite::driver($provider)->user();
@@ -64,10 +64,10 @@ class LoginController extends Controller
                     return redirect('/dashboard');
                 }
             }
-        // } catch (\Exception $e) {
-        //     //throw $th;
-        //     return redirect('/login');
-        // }
+        } catch (\Exception $e) {
+            //throw $th;
+            return redirect('/login');
+        }
 
 
     }

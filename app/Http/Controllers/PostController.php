@@ -8,11 +8,17 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function create_post(Request $request){
+    public function create_post(Request $request)
+    {
 
-        if (($request->hasFile("image") != null && $request->file("image")->isValid()) || $request->description == null){
-            
-            $privacy_levels = 1;//default pubic
+        $request->validate([
+            'description' => 'required',
+            'image' => 'required',
+        ]);
+
+        if (($request->hasFile("image") != null && $request->file("image")->isValid()) || $request->description == null) {
+
+            $privacy_levels = 1; //default pubic
             $is_allow = true;
             $is_deny = true;
 
@@ -24,13 +30,46 @@ class PostController extends Controller
             if ($post->save() && $request->hasFile("image")) {
                 # code...
                 $media = MediaController::uploadImage($request->file("image"));
-                MediaController::saveMedia($media, $post->id);
+                if (MediaController::saveMedia($media, $post->id)) {
+                    return new JsonResponse([
+                        'status' => 200,
+                        'message' => 'Posted',
+                        'media' => $media
+                    ]);
+                } else {
+                    return new JsonResponse([
+                        'status' => 201,
+                        'message' => 'Problem while saving in Media'
+                    ]);
+                }
             }
-        }
-        else{
+        } else {
             return new JsonResponse([
                 'status' => 201,
                 'message' => 'Slect image or Description to go further'
+            ]);
+        }
+    }
+
+    public function fetch_post(Request $request)
+    {
+
+        $post = Post::select()
+            ->Join('media', 'post_id_fk', '=', 'post.id')
+            ->where('is_allow', true)
+            ->orderByDesc('created_at')
+            ->get();
+            
+        if (count($post) > 0) {
+            return new JsonResponse([
+                'status' => 200,
+                'message' => 'Post fetch Successfully',
+                '$data' => $post
+            ]);
+        } else {
+            return new JsonResponse([
+                'status' => 201,
+                'message' => 'No post found'
             ]);
         }
     }
