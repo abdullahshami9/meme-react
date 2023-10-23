@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\GenderController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,4 +28,5 @@ Route::post('user/profile/data', [ProfileController::class, 'get_user_profile'])
 Route::post('user/login', [AuthenticatedSessionController::class, 'store']);
 Route::post('user/register', [RegisteredUserController::class, 'store']);
 Route::post('user/logout', [ProfileController::class, 'destroy']);
-Route::post('user/gender', [GenderController::class,'get_gender']);
+Route::post('user/gender', [GenderController::class, 'get_gender']);
+Route::post('user/profile/post', [PostController::class, 'create_post']);
