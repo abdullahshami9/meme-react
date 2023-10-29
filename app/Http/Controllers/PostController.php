@@ -56,10 +56,11 @@ class PostController extends Controller
 
         $post = Post::select()
             ->Join('media', 'post_id_fk', '=', 'post.id')
+            // ->Join('profile','id','=','profile_id_fk')
             ->where('is_allow', true)
             ->orderByDesc('created_at')
             ->get();
-            
+
         if (count($post) > 0) {
             return new JsonResponse([
                 'status' => 200,
