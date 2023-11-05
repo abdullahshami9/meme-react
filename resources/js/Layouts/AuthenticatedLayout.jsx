@@ -5,7 +5,7 @@ import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/react';
 import MemeDashboardLogo from '@/Components/MemeDashboardLogo';
-import Navbar from '@/Components/navbar/Navbar';
+import SearchBar from '@/Components/SearchBar';
 
 export default function Authenticated({ user, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
@@ -30,6 +30,11 @@ export default function Authenticated({ user, header, children }) {
                                 </div>
                             </div>
 
+                        <div>
+                            <SearchBar />
+                        </div>
+
+                        
                         <div className="hidden sm:flex sm:items-center sm:ml-6">
                             <div className="ml-3 relative">
                                 <Dropdown>
@@ -99,6 +104,8 @@ export default function Authenticated({ user, header, children }) {
                             Dashboard
                         </ResponsiveNavLink>
                     </div>
+
+
 
                     <div className="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
                         <div className="px-4">
