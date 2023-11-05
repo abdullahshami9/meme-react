@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\FriendController;
 use App\Http\Controllers\GenderController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
@@ -31,3 +32,6 @@ Route::post('user/logout', [ProfileController::class, 'destroy']);
 Route::post('user/gender', [GenderController::class, 'get_gender']);
 Route::post('user/profile/post', [PostController::class, 'create_post']);
 Route::post('user/profile/all-post', [PostController::class, 'fetch_post']);
+
+Route::post('user/friend/search', [FriendController::class,'search']);
+Route::post('user/friend/request', [FriendController::class, 'send_hommy_request']);

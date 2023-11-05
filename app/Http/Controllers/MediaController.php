@@ -8,28 +8,23 @@ use Illuminate\Http\Request;
 class MediaController extends Controller
 {
 
-    public static function uploadImage($image)
+    public static function uploadImage($image, $post_id)
     {
         $media = new Media();
 
-        $media->type = 'image'; // or other appropriate type
+        $media->type = 'image'; 
         $media->size = $image->getSize();
-
         $media->save();
 
-        $mediaId = $media->id; // Assuming that Media model has an 'id' field
-
-        // Determine the file extension (e.g., png, jpeg, etc.)
+        $mediaId = $media->id;
         $extension = $image->getClientOriginalExtension();
 
-        // Define the storage path with the media ID and extension
         $storagePath = 'media/' . $mediaId . '.' . $extension;
+        // $storagePath = 'media/' . $post_id.'.'.$mediaId . '.' . $extension; //for multiple images
 
-        // Store the image with the new filename
-        $image->storeAs('public', $storagePath); // You can adjust the storage path
+        $image->storeAs('public', $storagePath);
 
-        // Assign the URL to the media based on the storage path
-        $media->url = asset('storage/' . $storagePath);
+        $media->url = asset('storage/app/public/' . $storagePath);
 
         return $media;
     }
@@ -48,7 +43,7 @@ class MediaController extends Controller
             $images = $request->file("image");
 
             foreach ($images as $image) {
-                $media = $this->uploadImage($image);
+                $media = $this->uploadImage($image, $post_id);
                 $this->saveMedia($media, $post_id);
             }
         }
