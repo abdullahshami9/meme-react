@@ -4,20 +4,20 @@
 
 
 
-/* Make the navbar rounded */
-.navbar {
-    border-radius: 20px; /* Adjust the radius as needed */
-    padding: 10px; /* Add padding to give it some space */
-    background: teal; /* Set the default background color */
-    transition: background-color 0.3s; /* Add a smooth transition effect */
+
+/* .navbar {
+    border-radius: 20px; 
+    padding: 10px; 
+    background: teal;
+    transition: background-color 0.3s;
   }
   
-  /* Change the color to magenta on hover */
+  
   .navbar:hover {
     background: magenta;
   }
   
-  /* Apply a gradient with a transparent background */
+  
   .navbar::before {
     content: '';
     position: absolute;
@@ -25,17 +25,18 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right, transparent, transparent, rgba(0, 0, 0, 0.1)); /* Adjust the gradient as needed */
+    background: linear-gradient(to right, transparent, transparent, rgba(0, 0, 0, 0.1));
     border-radius: inherit;
     z-index: -1;
   }
   
-  /* Additional styles (you can adjust these as needed) */
+
   .navbar a {
-    color: white; /* Text color for links */
-    text-decoration: none; /* Remove underline from links */
-    padding: 10px 20px; /* Adjust the padding as needed */
+    color: white; 
+    text-decoration: none;
+    padding: 10px 20px;
   }
   
-  /* Add any other styles for your navbar elements as needed */
   
+   */
+   
