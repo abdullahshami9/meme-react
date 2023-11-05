@@ -5,6 +5,7 @@ import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/react';
 import MemeDashboardLogo from '@/Components/MemeDashboardLogo';
+import Navbar from '@/Components/navbar/Navbar';
 import SearchBar from '@/Components/SearchBar';
 
 export default function Authenticated({ user, header, children }) {
