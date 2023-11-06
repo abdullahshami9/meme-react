@@ -13,28 +13,31 @@ import { DarkModeContext } from "../../context/darkModeContext";
 import { AuthContext } from "../../context/authContext";
 import MemeDashboardLogo from "../MemeDashboardLogo";
 import axios from 'axios'
+import ApiCallComponent from "../searchcomponents/searches";
 
 const Navbar = ({ user }) => {
   const [searchValue, setSearchValue] = useState('');
+  const [result,setResult]= useState(null);
   const handleSearchChange = (e) => {
     e.preventDefault();
     setSearchValue(e.target.value);
-    const apiUrl = 'http://127.0.0.1:8000/api/user/friend/search';
-    const requestData = {
-      "search": searchValue,
-    };
 
-    console.log(searchValue);
-    // Make a POST request to the API using Axios.
-    axios.post(apiUrl, requestData)
-      .then(response => {
-        // Handle the successful response here.
-        console.log(response.data);
-      })
-      .catch(error => {
-        // Handle errors if the request fails.
-        console.error('Error:', error);
-      });
+    // const apiUrl = 'http://127.0.0.1:8000/api/user/friend/search';
+    // const requestData = {
+    //   "search": searchValue,
+    // };
+
+    // console.log(searchValue);
+    // // Make a POST request to the API using Axios.
+    // axios.post(apiUrl, requestData)
+    //   .then(response => {
+    //     // Handle the successful response here.
+    //     console.log(response.data);
+    //   })
+    //   .catch(error => {
+    //     // Handle errors if the request fails.
+    //     console.error('Error:', error);
+    //   });
   };
   // const { toggle, darkMode } = useContext(DarkModeContext);
   // const { currentUser } = useContext(AuthContext);
@@ -60,6 +63,7 @@ const Navbar = ({ user }) => {
             value={searchValue}
             onChange={handleSearchChange}
           />
+          <ApiCallComponent searchValue={searchValue}/>
         </div>
       </div>
       <div className="right">
