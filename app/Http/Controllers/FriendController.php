@@ -24,4 +24,8 @@ class FriendController extends Controller
         return $this->friendRepo->update($request);
     }
 
+    public function friendList(Request $request){
+        return $this->friendRepo->friendList($request);
+    }
+
 }

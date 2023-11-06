@@ -70,4 +70,23 @@ class FriendRepo implements IFriendRepo{
             $friend->save();
         }
     }
+
+    public function friendList(Request $request): JsonResponse{
+        if ($request->isMethod("post")) {
+            $myFriend_id = $request->my_friend_id;
+            $myFriend = friend::select('username')
+            ->join('profile', 'friends.my_friend_profile_id_fk', '=', 'profile.id')
+            ->where('friends.my_profile_id_fk', $myFriend_id)
+            ->get();
+            // dd($myFriend);
+            return new JsonResponse([
+                "status"=> '200',
+                'message'=> 'Friend List',
+                'list'=> $myFriend
+                ]);
+        }
+
+    }
+
+
 }
