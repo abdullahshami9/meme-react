@@ -30,8 +30,9 @@ Route::post('user/login', [AuthenticatedSessionController::class, 'store']);
 Route::post('user/register', [RegisteredUserController::class, 'store']);
 Route::post('user/logout', [ProfileController::class, 'destroy']);
 Route::post('user/gender', [GenderController::class, 'get_gender']);
-Route::post('user/profile/post', [PostController::class, 'create_post']);
+Route::post('user/profile/post', [PostController::class, 'create_post']);   
 Route::post('user/profile/all-post', [PostController::class, 'fetch_post']);
 
-Route::post('user/friend/search', [FriendController::class,'search']);
+Route::post('user/friend/search', [FriendController::class, 'search']);
 Route::post('user/friend/request', [FriendController::class, 'send_hommy_request']);
+Route::post('user/friend/friendlist', [FriendController::class, 'friendList']);

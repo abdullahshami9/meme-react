@@ -9,4 +9,5 @@ interface IFriendRepo{
     public function search(Request $request): JsonResponse;
     public function create(Request $request): JsonResponse;
     public function update(Request $request): JsonResponse;
+    public function friendList(Request $request) : JsonResponse;
 }
