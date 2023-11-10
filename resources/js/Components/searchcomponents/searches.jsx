@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import UserSearch from '@/Components/searchcomponents/UserSearch';
-import '../../../css/post.css';
+import '../../../css/post.scss';
 
 
 

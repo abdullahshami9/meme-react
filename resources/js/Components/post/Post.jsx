@@ -1,4 +1,4 @@
-import "../../../css/post.css";
+import "../../../css/post.scss";
 //import "@/Components/posts/posts.scss";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
