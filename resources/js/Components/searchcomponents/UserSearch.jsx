@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import "../../../css/post.css";
+import "../../../css/post.scss";
 import { Link } from "react-router-dom";
 //import "@/Components/searchs/searchs.scss";
 
