@@ -24,7 +24,7 @@ export default function Dashboard({ auth }) {
     >
       <Head title="Dashboard" />
       
-      <div style={{ display: "flex", color: 'white' }}>
+      <div style={{ display: "flex", color: 'black' }}>
         
         <LeftBar />
         <div style={{ flex: 6 }}>
