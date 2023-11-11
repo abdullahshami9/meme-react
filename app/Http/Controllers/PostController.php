@@ -29,7 +29,7 @@ class PostController extends Controller
             $post->is_allow = ($is_allow) ? $is_allow : $is_deny;
             if ($post->save() && $request->hasFile("image")) {
                 # code...
-                $media = MediaController::uploadImage($request->file("image"));
+                $media = MediaController::uploadImage($request->file("image"), $post->id);
                 if (MediaController::saveMedia($media, $post->id)) {
                     return new JsonResponse([
                         'status' => 200,
