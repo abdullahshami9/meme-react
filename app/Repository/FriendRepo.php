@@ -14,6 +14,7 @@ class FriendRepo implements IFriendRepo{
 
         $results = Profile::select('id','user_id_fk','username','city_id_fk')
         ->where('username', 'like', "%$query%")
+        ->limit(7)
         // ->join("profile","id","=","")
         ->get();
 
@@ -73,10 +74,11 @@ class FriendRepo implements IFriendRepo{
 
     public function friendList(Request $request): JsonResponse{
         if ($request->isMethod("post")) {
-            $myFriend_id = $request->my_friend_id;
-            $myFriend = friend::select('username')
+            $my_profile_id = $request->my_profile_id;
+            $myFriend = friend::select('username', 'friends.my_friend_profile_id_fk','profile_img_url','bio','is_status')
             ->join('profile', 'friends.my_friend_profile_id_fk', '=', 'profile.id')
-            ->where('friends.my_profile_id_fk', $myFriend_id)
+            ->where('friends.my_profile_id_fk', $my_profile_id)
+            ->distinct()
             ->get();
             // dd($myFriend);
             return new JsonResponse([
