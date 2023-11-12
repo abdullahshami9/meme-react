@@ -54,7 +54,9 @@ class RegisteredUserController extends Controller
         $profile->user_id_fk = $user->id;
         $profile->username = $request->name;
         $profile->fullname = $request->name;
-        $profile->gender_id_fk = 1;
+        $profile->dob = $request->dob;
+        $profile->mobileno = ($request->mobileno) ? $request->mobileno : null;
+        $profile->gender_id_fk = ($request->gender_id) ? $request->gender_id : 1;
         // $profile->gender_id_fk = $request->gender_id;
         $profile->status_id_fk = $status;
         $profile->privacy_id_fk = $privacy;
