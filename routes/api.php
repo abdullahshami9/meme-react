@@ -7,6 +7,7 @@ use App\Http\Controllers\GenderController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 /*
@@ -36,3 +37,5 @@ Route::post('user/profile/all-post', [PostController::class, 'fetch_post']);
 Route::post('user/friend/search', [FriendController::class, 'search']);
 Route::post('user/friend/request', [FriendController::class, 'send_hommy_request']);
 Route::post('user/friend/friendlist', [FriendController::class, 'friendList']);
+
+Route::post('user/profile/add-reaction', [ReactionController::class,'add_reaction']);

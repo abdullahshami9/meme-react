@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Repository\FriendRepo;
 use App\Repository\IFriendRepo;
+use App\Repository\IReactionRepo;
+use App\Repository\ReactionRepo;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -18,6 +20,7 @@ class RepositoryServiceProvider extends ServiceProvider
         // });
 
         $this->app->bind(IFriendRepo::class, FriendRepo::class);
+        $this->app->bind(IReactionRepo::class, ReactionRepo::class);
 
 
     }
