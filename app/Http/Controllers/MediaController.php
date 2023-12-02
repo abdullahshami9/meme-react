@@ -14,10 +14,12 @@ class MediaController extends Controller
 
         $media->type = 'image'; 
         $media->size = $image->getSize();
+        $extension = $image->getClientOriginalExtension();
+        // dd($extension);
+        $media->extention = $extension;
         $media->save();
 
         $mediaId = $media->id;
-        $extension = $image->getClientOriginalExtension();
 
         $storagePath = 'media/' . $mediaId . '.' . $extension;
         // $storagePath = 'media/' . $post_id.'.'.$mediaId . '.' . $extension; //for multiple images

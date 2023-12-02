@@ -57,22 +57,22 @@ class PostController extends Controller
 
         $post = Post::select()
             ->Join('media', 'post_id_fk', '=', 'post.id')
-            // ->Join('profile','id','=','profile_id_fk')
+            ->Join('profile','profile.id','=','post.profile_id_fk')
             ->where('is_allow', true)
-            ->orderByDesc('created_at')
+            ->orderByDesc('post.created_at')
             ->limit(2)
             ->get();
-dd($post);
-        if($post->id){
-            $media = PostController::fetch_media($post->id);
-        }
+// dd($post->toSql());
+//         if($post->id){
+//             $media = PostController::fetch_media($post->id);
+//         }
 
         if (count($post) > 0) {
             return new JsonResponse([
                 'status' => 200,
                 'message' => 'Post fetch Successfully',
                 '$data' => $post,
-                'url' => $media
+                // 'url' => $media
             ]);
         } else {
             return new JsonResponse([
@@ -82,18 +82,18 @@ dd($post);
         }
     }
 
-    public static function fetch_media($post_id){
-        // Define the file path
-    $filePath = "public/media/{$post_id}.jpg";
+    // public static function fetch_media($post_id){
+    //     // Define the file path
+    // $filePath = "public/media/{$post_id}.jpg";
 
-    // Check if the file exists
-    if (Storage::exists($filePath)) {
-        // File exists, return the file URL
-        $url = Storage::url($filePath);
-        return $url;
-    } else {
-        // File doesn't exist, handle accordingly (return null, throw an exception, etc.)
-        return null;
-    }
-    }
+    // // Check if the file exists
+    // if (Storage::exists($filePath)) {
+    //     // File exists, return the file URL
+    //     $url = Storage::url($filePath);
+    //     return $url;
+    // } else {
+    //     // File doesn't exist, handle accordingly (return null, throw an exception, etc.)
+    //     return null;
+    // }
+    // }
 }

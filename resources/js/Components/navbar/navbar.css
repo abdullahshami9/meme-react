@@ -1,0 +1,100 @@
+/* Import CSS */
+/* @import "../../../css/style.scss"; */
+.navbar {
+  /* Replace SCSS mixin with standard CSS properties */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 10px 20px;
+  height: 50px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  /* Replace SCSS themed function with specific values */
+  z-index: 999;
+}
+
+.navbar .left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 30px;
+}
+
+.navbar .left span {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.navbar .left .search {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.navbar .left .search input {
+  border: none;
+  width: 500px;
+  background-color: transparent;
+}
+
+/* Media Queries */
+@media only screen and (max-width: 768px) {
+  .navbar .left .search input {
+    display: none;
+  }
+  .navbar .right {
+    display: none;
+  }
+  .navbar .left .search {
+    width: 200px;
+  }
+  .navbar .left .search input {
+    width: 200px;
+  }
+}
+
+.navbar .right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 20px;
+}
+
+.navbar .right .user {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+  font-weight: 500;
+}
+
+.navbar .right .user img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+/*# sourceMappingURL=navbar.css.map */
