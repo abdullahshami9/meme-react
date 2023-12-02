@@ -28,5 +28,20 @@ class ReactionRepo implements IReactionRepo{
     
         return $reaction->save();
     }
+
+    public function get_reaction($post_id) {
+
+        $data= [];
+        if($post_id){
+            $count = Reaction::where([
+                'post_id_fk' => $post_id
+            ])
+            ->count();
+
+            $data['count'] = $count;
+        }
+
+        return $data['count'];
+    }
     
 }

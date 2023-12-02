@@ -37,5 +37,7 @@ Route::post('user/profile/all-post', [PostController::class, 'fetch_post']);
 Route::post('user/friend/search', [FriendController::class, 'search']);
 Route::post('user/friend/request', [FriendController::class, 'send_hommy_request']);
 Route::post('user/friend/friendlist', [FriendController::class, 'friendList']);
+Route::post('user/friend/friendlist-remove', [FriendController::class, 'deleteFriendRequest']);
 
 Route::post('user/profile/add-reaction', [ReactionController::class,'add_reaction']);
+Route::post('user/profile/get-reaction', [ReactionController::class,'get_reaction']);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -59,13 +60,19 @@ class PostController extends Controller
             // ->Join('profile','id','=','profile_id_fk')
             ->where('is_allow', true)
             ->orderByDesc('created_at')
+            ->limit(2)
             ->get();
+dd($post);
+        if($post->id){
+            $media = PostController::fetch_media($post->id);
+        }
 
         if (count($post) > 0) {
             return new JsonResponse([
                 'status' => 200,
                 'message' => 'Post fetch Successfully',
-                '$data' => $post
+                '$data' => $post,
+                'url' => $media
             ]);
         } else {
             return new JsonResponse([
@@ -73,5 +80,20 @@ class PostController extends Controller
                 'message' => 'No post found'
             ]);
         }
+    }
+
+    public static function fetch_media($post_id){
+        // Define the file path
+    $filePath = "public/media/{$post_id}.jpg";
+
+    // Check if the file exists
+    if (Storage::exists($filePath)) {
+        // File exists, return the file URL
+        $url = Storage::url($filePath);
+        return $url;
+    } else {
+        // File doesn't exist, handle accordingly (return null, throw an exception, etc.)
+        return null;
+    }
     }
 }

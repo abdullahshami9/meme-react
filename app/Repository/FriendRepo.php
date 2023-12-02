@@ -76,7 +76,8 @@ class FriendRepo implements IFriendRepo{
         if ($request->isMethod("post")) {
             $my_profile_id = $request->my_profile_id;
             $myFriend = friend::select('username', 'friends.my_friend_profile_id_fk','profile_img_url','bio','is_status')
-            ->join('profile', 'friends.my_friend_profile_id_fk', '=', 'profile.id')
+            ->join('profile', 'friends.my_friend_profile_id_fk', '=', 'p
+            rofile.id')
             ->where('friends.my_profile_id_fk', $my_profile_id)
             ->distinct()
             ->get();
@@ -89,6 +90,42 @@ class FriendRepo implements IFriendRepo{
         }
 
     }
+
+    public function friendList_remove(Request $request): JsonResponse
+{
+    if ($request->isMethod("post")) {
+        $my_profile_id = $request->my_profile_id;
+        $my_friend_profile_id = $request->my_friend_profile_id; // Assuming you pass the friend's profile id for deletion
+
+        // if ($request->has('delete_friend')) {
+            // Delete friend based on my_profile_id and my_friend_profile_id_fk
+            friend::where('my_profile_id_fk', $my_profile_id)
+                ->where('my_friend_profile_id_fk', $my_friend_profile_id)
+                ->delete();
+
+            return new JsonResponse([
+                "status" => '200',
+                'message' => 'Friend deleted successfully',
+            ]);
+        // }
+        
+        //  else {
+        //     // Retrieve friend list
+        //     $myFriend = friend::select('username', 'friends.my_friend_profile_id_fk', 'profile_img_url', 'bio', 'is_status')
+        //         ->join('profile', 'friends.my_friend_profile_id_fk', '=', 'profile.id')
+        //         ->where('friends.my_profile_id_fk', $my_profile_id)
+        //         ->distinct()
+        //         ->get();
+
+        //     return new JsonResponse([
+        //         "status" => '200',
+        //         'message' => 'Friend List',
+        //         'list' => $myFriend,
+        //     ]);
+        // }
+    }
+}
+
 
 
 }

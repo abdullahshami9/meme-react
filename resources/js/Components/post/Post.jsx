@@ -7,6 +7,7 @@ import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { Link } from "react-router-dom";
 import Comments from "@/Components/comments/Comments";
+import Reactions from "@/Components/reaction/Reactions";
 import { useState } from "react";
 
 const Post = ({ post }) => {
@@ -23,7 +24,7 @@ const Post = ({ post }) => {
             <img src={post.profilePic} alt="" />
             <div className="details">
               <Link
-                to={`/profile/${post.userId}`}
+                to={`/profile/${post.profile_id_fk}`}
                 style={{ textDecoration: "none", color: "inherit" }}
               >
                 <span className="name">{post['profile_id_fk']}</span>
@@ -38,6 +39,7 @@ const Post = ({ post }) => {
           <img src={post.url} alt="" />
         </div>
         <div className="info">
+          <Reactions postId={post.id} />
           <div className="item">
             {liked ? <FavoriteOutlinedIcon /> : <FavoriteBorderOutlinedIcon />}
             12 Likes

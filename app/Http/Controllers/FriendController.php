@@ -28,4 +28,13 @@ class FriendController extends Controller
         return $this->friendRepo->friendList($request);
     }
 
+    public function deleteFriendRequest(Request $request){
+        // $modified_request = [
+        //     "my_profile_id" => $request->my_profile_id_fk,
+        //     "my_friend_profile_id" => $request->my_friend_profile_id_fk,
+        // ];
+    
+        return $this->friendRepo->friendList_remove($request);
+    }
+
 }

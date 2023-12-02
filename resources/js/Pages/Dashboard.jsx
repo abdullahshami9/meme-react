@@ -30,7 +30,7 @@ export default function Dashboard({ auth }) {
         <div style={{ flex: 6 }}>
           <Outlet />
           <div className='home'>
-            <Stories />
+            {/* <Stories /> */}
             <Share />
             <Posts />
           </div>
