@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FriendController;
 use App\Http\Controllers\GenderController;
 use App\Http\Controllers\LoginController;
@@ -41,3 +42,5 @@ Route::post('user/friend/friendlist-remove', [FriendController::class, 'deleteFr
 
 Route::post('user/profile/add-reaction', [ReactionController::class,'add_reaction']);
 Route::post('user/profile/get-reaction', [ReactionController::class,'get_reaction']);
+Route::post('user/posts/{postId}/comments', [CommentController::class, 'getCommentsByPost']);
+Route::post('user/posts/create-comments', [CommentController::class, 'createComment']);
