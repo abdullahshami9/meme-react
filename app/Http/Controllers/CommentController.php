@@ -39,6 +39,7 @@ class CommentController extends Controller
         // $post = Comment::find($postId);
         $comments = Comment::select()
         ->join('post_comments', 'comment_id_fk', '=', 'comments.id')
+        ->join('profile', 'profile.id', '=', 'post_comments.profile_id_fk')
         ->where([
             'post_id_fk' => $postId
         ])
