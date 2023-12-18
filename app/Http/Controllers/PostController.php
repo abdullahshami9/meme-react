@@ -28,10 +28,11 @@ class PostController extends Controller
             $post->description = $request->description;
             $post->privacy = $privacy_levels;
             $post->is_allow = ($is_allow) ? $is_allow : $is_deny;
+            // $post->is_reel = $request->is_reel; // one to one hierarchy
             if ($post->save() && $request->hasFile("image")) {
                 # code...
                 $media = MediaController::uploadImage($request->file("image"), $post->id);
-                if (MediaController::saveMedia($media, $post->id)) {
+                if (MediaController::saveMedia($media, $post->id, $request->is_reel)) {
                     return new JsonResponse([
                         'status' => 200,
                         'message' => 'Posted',
@@ -58,11 +59,14 @@ class PostController extends Controller
         $post = Post::select()
             ->Join('media', 'post_id_fk', '=', 'post.id')
             ->Join('profile','profile.id','=','post.profile_id_fk')
-            ->where('is_allow', true)
+            ->where([
+                'is_allow' => true,
+                'media.is_reel' => $request->is_reel
+            ])
             ->orderByDesc('post.created_at')
-            ->limit(2)
+            ->limit(4)
             ->get();
-// dd($post->toSql());
+// dd($post->toSql());s
 //         if($post->id){
 //             $media = PostController::fetch_media($post->id);
 //         }
