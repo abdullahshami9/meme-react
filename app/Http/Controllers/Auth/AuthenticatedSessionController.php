@@ -67,7 +67,10 @@ class AuthenticatedSessionController extends Controller
 
     if (Auth::attempt($credentials)) {
         $user = Auth::user();
-        $profile = Profile::find($user->id);
+        //modified
+        $profile = Profile::select()
+        ->where('user_id_fk', $user->id)
+        ->first();
 
         // Log successful login attempt
         $this->logLoginAttempt('2', 'request->ip()', 'DummyLatitude', 'DummyLongitude');

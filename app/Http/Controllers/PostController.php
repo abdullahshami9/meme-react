@@ -66,7 +66,7 @@ class PostController extends Controller
             ->orderByDesc('post.created_at')
             ->limit(4)
             ->get();
-// dd($post->toSql());s
+// dd($post->toSql());
 //         if($post->id){
 //             $media = PostController::fetch_media($post->id);
 //         }
