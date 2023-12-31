@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Inertia\Response;
+use Schema;
 
 class RegisteredUserController extends Controller
 {
@@ -51,25 +52,27 @@ class RegisteredUserController extends Controller
         $privacy = 1; //pubilc
         $city = 1; //by default city is karachi but we've to set dynamically
 
-        $profile = new Profile;
-        $profile->user_id_fk = $user->id;
-        $profile->username = $request->name;
-        $profile->fullname = $request->name;
-        $profile->dob = $request->dob;
-        $profile->mobileno = ($request->mobileno) ? $request->mobileno : null;
-        $profile->gender_id_fk = ($request->gender_id) ? $request->gender_id : 1;
-        // $profile->gender_id_fk = $request->gender_id;
-        $profile->status_id_fk = $status;
-        $profile->privacy_id_fk = $privacy;
-        $profile->city_id_fk = $city;
-        $profile->created_at = now();
+        if (Schema::hasTable('profile')) {
+            $profile = new Profile;
+            $profile->user_id_fk = $user->id;
+            $profile->username = $request->name;
+            $profile->fullname = $request->name;
+            $profile->dob = $request->dob;
+            $profile->mobileno = ($request->mobileno) ? $request->mobileno : null;
+            $profile->gender_id_fk = ($request->gender_id) ? $request->gender_id : 1;
+            // $profile->gender_id_fk = $request->gender_id;
+            $profile->status_id_fk = $status;
+            $profile->privacy_id_fk = $privacy;
+            $profile->city_id_fk = $city;
+            $profile->created_at = now();
 
-        if($profile->save()){
-            $data['profile'] = [
-                'id' => $profile->id,
-                'name' => $profile->username,
-                'profile_image' => $profile->profile_img_url
-            ];
+            if($profile->save()){
+                $data['profile'] = [
+                    'id' => $profile->id,
+                    'name' => $profile->username,
+                    'profile_image' => $profile->profile_img_url
+                ];
+            }
         }
 
         event(new Registered($user));
