@@ -76,8 +76,7 @@ class FriendRepo implements IFriendRepo{
         if ($request->isMethod("post")) {
             $my_profile_id = $request->my_profile_id;
             $myFriend = friend::select('username', 'friends.my_friend_profile_id_fk','profile_img_url','bio','is_status')
-            ->join('profile', 'friends.my_friend_profile_id_fk', '=', 'p
-            rofile.id')
+            ->join('profile', 'friends.my_friend_profile_id_fk', '=', 'profile.id')
             ->where('friends.my_profile_id_fk', $my_profile_id)
             ->distinct()
             ->get();
