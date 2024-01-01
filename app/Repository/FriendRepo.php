@@ -57,20 +57,47 @@ class FriendRepo implements IFriendRepo{
         }
     }
 
-    public function update(Request $request) : JsonResponse{
-        if ($request->isMethod("post")) {
-            $myProfileId = $request->my_profile_id;
-            $myFriend_profileId = $request->my_friend_profile_
-            ->my_friend_profile_id;
-            $status = player_status($myFriend_profileId);
-            $friend = new friend();
+    public function update(Request $request): JsonResponse
+{
+    if ($request->isMethod("post")) {
+        $myProfileId = $request->my_profile_id;
+        $myFriendProfileId = $request->my_friend_profile_id;
+
+        // Check if the friendship already exists
+        $existingFriendship = Friend::where('my_profile_id_fk', $myProfileId)
+            ->where('my_friend_profile_id_fk', $myFriendProfileId)
+            ->first();
+
+        if ($existingFriendship) {
+            // Friendship already exists
+            if ($existingFriendship->is_status == 'hommy') {
+                return response()->json(['message' => 'You\'re already homies']);
+            }
+
+            // Update status based on request param
+            $newStatus = $request->status;
+            if ($newStatus == 'confirm') {
+                $existingFriendship->is_status = 'Hommy';
+            } elseif ($newStatus == 'blocked') {
+                $existingFriendship->is_status = 'Blocked';
+            }
+            else{
+                $existingFriendship->is_status = $request->status;
+            }
+
+            $existingFriendship->save();
+        } else {
+            // Friendship doesn't exist, create a new one
+            $friend = new Friend();
             $friend->my_profile_id_fk = $myProfileId;
-            $friend->my_friend_profile_id_
-            = $myFriend_profileId;
-            $friend->is_status = $status;
+            $friend->my_friend_profile_id_fk = $myFriendProfileId;
+            $friend->is_status = $request->input('status'); // Set status directly from request param
             $friend->save();
         }
+
+        return response()->json(['message' => 'Friendship updated successfully']);
     }
+}
 
     public function friendList(Request $request): JsonResponse{
         if ($request->isMethod("post")) {
