@@ -45,3 +45,13 @@ Route::post('user/profile/add-reaction', [ReactionController::class,'add_reactio
 Route::post('user/profile/get-reaction', [ReactionController::class,'get_reaction']);
 Route::post('user/posts/{postId}/comments', [CommentController::class, 'getCommentsByPost']);
 Route::post('user/posts/create-comments', [CommentController::class, 'createComment']);
+
+// In routes/web.php
+Route::middleware(['api', 'auth'])->group(function () {
+    // Your routes here, including the one calling upload_profile_image 
+    Route::post('user/profile-pic-upload', [ProfileController::class, 'upload_profile_image']);
+
+});
+
+
+// Route::post('user/profile-pic-upload', [ProfileController::class, 'upload_profile_image']);

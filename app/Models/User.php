@@ -44,6 +44,12 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    //for set profile data into session also instead just of user data
+    public function profile()
+    {
+        return $this->hasOne(Profile::class, 'user_id_fk');
+    }
+
     public static function generateUserName($username){
         if ($username == null) {
             # code...

@@ -46,6 +46,17 @@ Route::get('/media/{filename}', function ($filename) {
 })->where('filename', '(.*)');
 
 
+Route::get('/profile/{filename}', function ($filename) {
+    $path = storage_path('app/public/pf_pic/' . $filename);
+
+    if (!file_exists($path)) {
+        abort(404);
+    }
+
+    return response()->file($path);
+})->where('filename', '(.*)');
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

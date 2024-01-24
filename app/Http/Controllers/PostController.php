@@ -92,7 +92,7 @@ class PostController extends Controller
             ->where('post.privacy', 1)
             ->where('media.is_reel', $request->is_reel)
             ->orderBy('post.id', 'desc')
-            ->limit(10)
+            ->limit(7)
             ->get();
 // dd($post->toSql());
 //         if($post->id){
@@ -114,18 +114,5 @@ class PostController extends Controller
         }
     }
 
-    // public static function fetch_media($post_id){
-    //     // Define the file path
-    // $filePath = "public/media/{$post_id}.jpg";
-
-    // // Check if the file exists
-    // if (Storage::exists($filePath)) {
-    //     // File exists, return the file URL
-    //     $url = Storage::url($filePath);
-    //     return $url;
-    // } else {
-    //     // File doesn't exist, handle accordingly (return null, throw an exception, etc.)
-    //     return null;
-    // }
-    // }
+    
 }
