@@ -9,7 +9,7 @@ const Posts = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await axios.post("http://localhost:8000/api/user/profile/all-post");
+      // const response = await axios.post("http://localhost:8000/api/user/profile/all-post");
       if (response) {
         setPosts(response.data['$data']);
       } else {

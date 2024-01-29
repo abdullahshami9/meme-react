@@ -31,9 +31,10 @@ class MediaController extends Controller
         return $media;
     }
 
-    public static function saveMedia($media, $post_id)
+    public static function saveMedia($media, $post_id, $reel)
     {
         $media->post_id_fk = $post_id;
+        $media->is_reel = $reel;
         return ($media->save()) ? true : false;
     }
 
@@ -46,7 +47,7 @@ class MediaController extends Controller
 
             foreach ($images as $image) {
                 $media = $this->uploadImage($image, $post_id);
-                $this->saveMedia($media, $post_id);
+                $this->saveMedia($media, $post_id, 'false');
             }
         }
 

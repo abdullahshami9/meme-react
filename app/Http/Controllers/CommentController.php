@@ -43,13 +43,14 @@ class CommentController extends Controller
         ->where([
             'post_id_fk' => $postId
         ])
+        ->orderByDesc('comments.updated_at')
+        ->limit(10)
         ->get();
-// dd($postId);
+
         if (!$comments) {
             return response()->json(['message' => 'Post not found'], 404);
         }
-
-        // $comments = $post->postComments;
+ 
 
 
         return response()->json(['comments' => $comments]);

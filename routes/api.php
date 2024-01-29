@@ -38,9 +38,20 @@ Route::post('user/profile/all-post', [PostController::class, 'fetch_post']);
 Route::post('user/friend/search', [FriendController::class, 'search']);
 Route::post('user/friend/request', [FriendController::class, 'send_hommy_request']);
 Route::post('user/friend/friendlist', [FriendController::class, 'friendList']);
+Route::post('user/friend/update', [FriendController::class, 'updateFriendRequest']);
 Route::post('user/friend/friendlist-remove', [FriendController::class, 'deleteFriendRequest']);
 
 Route::post('user/profile/add-reaction', [ReactionController::class,'add_reaction']);
 Route::post('user/profile/get-reaction', [ReactionController::class,'get_reaction']);
 Route::post('user/posts/{postId}/comments', [CommentController::class, 'getCommentsByPost']);
 Route::post('user/posts/create-comments', [CommentController::class, 'createComment']);
+
+// In routes/web.php
+Route::middleware(['api', 'auth'])->group(function () {
+    // Your routes here, including the one calling upload_profile_image 
+    Route::post('user/profile-pic-upload', [ProfileController::class, 'upload_profile_image']);
+
+});
+
+
+// Route::post('user/profile-pic-upload', [ProfileController::class, 'upload_profile_image']);
