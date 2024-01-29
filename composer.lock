@@ -1044,6 +1044,7 @@
         },
         {
             "name": "laravel/framework",
+<<<<<<< HEAD
             "version": "v10.30.1",
             "source": {
                 "type": "git",
@@ -1054,6 +1055,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/7a2da50258c4d0f693b738d3f3c69b2693aea6c1",
                 "reference": "7a2da50258c4d0f693b738d3f3c69b2693aea6c1",
+=======
+            "version": "v10.29.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "2d002849a16ad131110a50cbea4d64dbb78515a3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/2d002849a16ad131110a50cbea4d64dbb78515a3",
+                "reference": "2d002849a16ad131110a50cbea4d64dbb78515a3",
+>>>>>>> d1f07798090164917b07e0dc9efa4d5109a69dda
                 "shasum": ""
             },
             "require": {
@@ -1242,6 +1255,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
+<<<<<<< HEAD
             "time": "2023-11-01T13:52:17+00:00"
         },
         {
@@ -1256,6 +1270,22 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/prompts/zipball/e1379d8ead15edd6cc4369c22274345982edc95a",
                 "reference": "e1379d8ead15edd6cc4369c22274345982edc95a",
+=======
+            "time": "2023-10-24T13:48:53+00:00"
+        },
+        {
+            "name": "laravel/prompts",
+            "version": "v0.1.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/prompts.git",
+                "reference": "b35f249028c22016e45e48626e19e5d42fd827ff"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/prompts/zipball/b35f249028c22016e45e48626e19e5d42fd827ff",
+                "reference": "b35f249028c22016e45e48626e19e5d42fd827ff",
+>>>>>>> d1f07798090164917b07e0dc9efa4d5109a69dda
                 "shasum": ""
             },
             "require": {
@@ -1297,9 +1327,15 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel/prompts/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/laravel/prompts/tree/v0.1.13"
             },
             "time": "2023-10-27T13:53:59+00:00"
+=======
+                "source": "https://github.com/laravel/prompts/tree/v0.1.12"
+            },
+            "time": "2023-10-18T14:18:57+00:00"
+>>>>>>> d1f07798090164917b07e0dc9efa4d5109a69dda
         },
         {
             "name": "laravel/sanctum",
@@ -6106,6 +6142,7 @@
         },
         {
             "name": "laravel/breeze",
+<<<<<<< HEAD
             "version": "v1.26.0",
             "source": {
                 "type": "git",
@@ -6116,6 +6153,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/breeze/zipball/c348b02c6af24ee26e7647cdb6b1321da7aecaa9",
                 "reference": "c348b02c6af24ee26e7647cdb6b1321da7aecaa9",
+=======
+            "version": "v1.25.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/breeze.git",
+                "reference": "f0507f4d1ac0e16765e9fa8e0393c9f8a25d3d6f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/breeze/zipball/f0507f4d1ac0e16765e9fa8e0393c9f8a25d3d6f",
+                "reference": "f0507f4d1ac0e16765e9fa8e0393c9f8a25d3d6f",
+>>>>>>> d1f07798090164917b07e0dc9efa4d5109a69dda
                 "shasum": ""
             },
             "require": {
@@ -6164,7 +6213,11 @@
                 "issues": "https://github.com/laravel/breeze/issues",
                 "source": "https://github.com/laravel/breeze"
             },
+<<<<<<< HEAD
             "time": "2023-10-29T16:19:56+00:00"
+=======
+            "time": "2023-10-20T14:02:17+00:00"
+>>>>>>> d1f07798090164917b07e0dc9efa4d5109a69dda
         },
         {
             "name": "laravel/pint",
