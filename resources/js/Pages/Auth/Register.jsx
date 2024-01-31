@@ -5,6 +5,7 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
+import RegisterLayout from '@/Layouts/RegisterLayout';
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -24,12 +25,11 @@ export default function Register() {
 
     const submit = (e) => {
         e.preventDefault();
-
         post(route('register'));
     };
 
     return (
-        <GuestLayout>
+        <RegisterLayout>
             <Head title="Register" />
 
             <form onSubmit={submit}>
@@ -152,16 +152,9 @@ export default function Register() {
                     <InputLabel value="Gender" />
                     {/* Radio buttons for gender in a row */}
                     <div className="flex">
-
-                        <div
-
-                            style={{ borderRadius: 10, borderWidth: 2, borderColor: 'black', margin: 10 }}>
-
-
-                            <label
-                                style={{ paddingLeft: 10,paddingVertical:20 }}
-                                className="mr-4">
-
+                        <div style={{ margin: '10px', borderRadius: '20px' }}>
+                            <img style={{ borderRadius: '20px' }} width='100px' height='110px' src='assets/images/male_icon5.png' />
+                            <label style={{ paddingLeft: 10, color: 'black', paddingVertical: 10, }} className="mr-4">
                                 <input
                                     type="radio"
                                     name="gender"
@@ -169,16 +162,11 @@ export default function Register() {
                                     checked={data.gender === "1"}
                                     onChange={(e) => setData('gender', e.target.value)}
                                 />
-                                Male
                             </label>
-
                         </div>
-                        <div
-                         style={{ borderRadius: 10, borderWidth: 2, borderColor: 'black', margin: 10 }}>
-                            
-                            <label 
-                            style={{ paddingLeft: 10,paddingVertical:20 }}
-                            className="mr-4">
+                        <div style={{ margin: '10px' }}>
+                            <img style={{ borderRadius: '20px' }} width='110px' height='110px' src='assets/images/female_icon3.png' />
+                            <label style={{ paddingLeft: 10, color: 'white', paddingVertical: 10 }} className="mr-4">
                                 <input
                                     type="radio"
                                     name="gender"
@@ -186,41 +174,41 @@ export default function Register() {
                                     checked={data.gender === "2"}
                                     onChange={(e) => setData('gender', e.target.value)}
                                 />
-                                Female
                             </label>
                         </div>
-                        <div
-                         style={{ borderRadius: 10, borderWidth: 2, borderColor: 'black', margin: 10 }}>
-                        <label
-                        style={{ paddingLeft: 10,paddingVertical:20 }}>
-                            <input
-                                type="radio"
-                                name="gender"
-                                value="3"
-                                checked={data.gender === "3"}
-                                onChange={(e) => setData('gender', e.target.value)}
-                            />
-                            Prefer Not to Say
-                        </label>
+                        <div style={{ margin: '10px' }}>
+                            <img style={{ borderRadius: '20px' }} width='107px' height='107px' src='assets/images/transgender_icon1.png' />
+                            <label style={{ paddingLeft: 10, color: 'white', paddingVertical: 10 }}>
+                                <input
+                                    type="radio"
+                                    name="gender"
+                                    value="3"
+                                    checked={data.gender === "3"}
+                                    onChange={(e) => setData('gender', e.target.value)}
+                                />
+                            </label>
                         </div>
                     </div>
                 </div>
 
+                <div className="w-full mb-4 mt-6">
+                    <PrimaryButton className="w-full" disabled={processing}>
+                        Register
+                    </PrimaryButton>
+                </div>
 
-
-                <div className="flex items-center justify-end mt-4">
+                <div className="flex items-center justify-center mt-4">
                     <Link
                         href={route('login')}
                         className="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
                     >
                         Already registered?
                     </Link>
-
-                    <PrimaryButton className="ml-4" disabled={processing}>
-                        Register
-                    </PrimaryButton>
+                    {/* <PrimaryButton className="ml-4" disabled={processing}>
+            Register
+          </PrimaryButton> */}
                 </div>
             </form>
-        </GuestLayout>
+        </RegisterLayout>
     );
 }
